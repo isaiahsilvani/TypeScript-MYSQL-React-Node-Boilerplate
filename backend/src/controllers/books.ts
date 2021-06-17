@@ -32,8 +32,37 @@ const getRequest = (req: Request, res: Response ) => {
   })
 }
 
+const postRequest = (req: Request, res: Response ) => {
+  logging.info(NAMESPACE, 'Creating book.')
+
+  let { author, title } = req.body
+  let query = `INSERT INTO books (author, title) VALUES ("${author}", "${title}")`
+
+  Connect()
+  .then(connection => {
+    Query(connection, query)
+    .then(result => {
+      return res.status(200).json({
+        result
+      })
+    })
+    .catch(error => {
+      logging.error(NAMESPACE, error.message, error)
+  
+      return res.status(500).json({
+        message: error.message,
+        error
+      })
+    })
+    .finally(() => {
+      connection.end()
+    })
+  })
+}
+
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   getRequest,
+  postRequest
 }
