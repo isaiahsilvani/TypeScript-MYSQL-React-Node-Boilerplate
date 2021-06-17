@@ -34,8 +34,9 @@ const getRequest = (req: Request, res: Response ) => {
 
 const postRequest = (req: Request, res: Response ) => {
   logging.info(NAMESPACE, 'Creating book.')
-
+  console.log('req body here!!!!', req.body)
   let { author, title } = req.body
+  console.log('-----', author, title)
   let query = `INSERT INTO books (author, title) VALUES ("${author}", "${title}")`
 
   Connect()
