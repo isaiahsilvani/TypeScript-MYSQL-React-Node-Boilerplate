@@ -7,8 +7,15 @@ import { actionCreators } from './state';
 import styled from '@emotion/styled'
 import * as api from './services/api'
 
+import Login from './components/Login/Login'
+import Registration from './components/Registration/Registration'
+
 const StyledComponent = styled.div`
   background-color: lightblue;
+`
+
+const AuthSection = styled.div`
+  background-color: lightpink;
 `
 
 function App() {
@@ -26,26 +33,33 @@ function App() {
   }
 
   return (
-    <StyledComponent>
-      <h2>The Ultimate Typescript React Redux Node MongoDB Boilerplate</h2>
-      <h3>By Isaiah Silvani</h3>
-      <hr/>
-      <h2>State in Redux Store: {testState}</h2>
-      <input
-        value={testState}
-        onChange={e => setTestState(e.target.value)}
-      />
-      <button
-        onClick={postRequest}
-      >
-        Send POST request to backend
-      </button>
-      <button
-        onClick={getRequest}
-      >
-        Send GET request to backend
-      </button>
-    </StyledComponent>
+    <>
+      <StyledComponent>
+        <h2>The Ultimate Typescript React Redux Node MongoDB Boilerplate</h2>
+        <h3>By Isaiah Silvani</h3>
+        <hr/>
+        <h2>State in Redux Store: {testState}</h2>
+        <input
+          value={testState}
+          onChange={e => setTestState(e.target.value)}
+        />
+        <button
+          onClick={postRequest}
+        >
+          Send POST request to backend
+        </button>
+        <button
+          onClick={getRequest}
+        >
+          Send GET request to backend
+        </button>
+      </StyledComponent>
+      <br/>
+      <AuthSection>
+        <Login/>
+        <Registration/>
+      </AuthSection>
+    </>
   );
 }
 
