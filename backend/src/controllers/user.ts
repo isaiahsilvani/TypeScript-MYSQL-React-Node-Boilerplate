@@ -69,12 +69,15 @@ const login = (req: Request, res: Response, next: NextFunction) => {
         Query(connection, query)
         .then((users:any) => {
             if (!users[0]) {
-                return res.status(201).json({
+                return res.status(200).json({
                     message: "User does not exist"
                 })
             }
-            console.log(users[0])
+
             bcryptjs.compare(password, users[0].password, (error, result) => {
+
+
+                console.log(result)
 
                 if (error)
                 {
@@ -101,6 +104,10 @@ const login = (req: Request, res: Response, next: NextFunction) => {
                                 user: users[0]
                             })
                         }
+                    })
+                } else if (!result) {
+                    return res.status(200).json({
+                        message: "Wrong password"
                     })
                 }
             })
