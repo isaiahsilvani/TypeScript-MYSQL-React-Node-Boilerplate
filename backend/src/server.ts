@@ -12,6 +12,7 @@ require("./config/database");
 
 /** Require the routes **/
 const blankRoutes = require('./routes/blank')
+const userRoutes = require('./routes/user')
 
 /**  Logging the request  **/
 app.use((req, res, next) => {
@@ -43,6 +44,7 @@ app.use((req, res, next) => {
 
 /** Routes **/
 app.use('', blankRoutes)
+app.use('/users', userRoutes)
 
 /** Error Handling **/
 app.use((req, res, next) => {
